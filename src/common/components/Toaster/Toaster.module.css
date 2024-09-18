@@ -1,0 +1,16 @@
+.Toaster{
+    background:red;
+    color:white;
+    border-radius:5px;
+    padding:5px;
+    top:0;
+    right:0;
+    font-weight:bold;
+    width:250px;
+    text-align:center;
+}
+.Toaster>b{
+    cursor:pointer;
+    position:absolute;
+    left:250px;
+}
