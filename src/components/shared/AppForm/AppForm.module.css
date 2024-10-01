@@ -1,0 +1,25 @@
+.formMask{
+    position:fixed;
+    top:0;
+    bottom:0;
+    right:0;
+    left:0;
+    background:black;
+    opacity:0.5;
+}
+.formMask+div{
+    position:absolute;
+    height:100vh;
+    top:0;
+    right:0;
+    width:400px;
+    background:white;
+    
+}
+.close{
+    position:absolute;
+    top:4px;
+    right:4px;
+    font-weight:bold;
+    cursor:pointer;
+}

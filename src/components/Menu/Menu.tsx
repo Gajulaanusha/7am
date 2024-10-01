@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState,useContext } from 'react'
 import menuItems from './config.json'
 import Link from 'next/link'
 import styles from './Menu.module.css'
 import Image from 'next/image'
 import { AppCookies } from '@/services/cookies'
 import { appCxt } from '@/context/appCxt'
-import {useContext} from 'react';
 export const Menu = () => {
     const [isMobileView, setIsMobileView] = useState(document.body.offsetWidth < 700)
     const [left, setLeft] = useState('-80vw')
@@ -23,16 +22,21 @@ export const Menu = () => {
         setLeft(left === '0' ? '-80vw' : '0')
     }
     const handleMenuItemClick = (id:string) => {
-        if(id==='logout'){
-            dispatch({
-                type: "MODAL",
-                payload: true
-            })
+        if (id === 'logout') {
+           dispatch({
+            type:'MODAL',
+            payload:{
+                isShowModal:true,
+                modalAction:fnLogout
+            }
+           })
+       // fnLogout()
+        }
         if (isMobileView) {
             setLeft('-80vw')
         }
     }
-    const fnLogout=()=>{
+    const fnLogout = () => {
         AppCookies.deleteAllCookies();
         dispatch({
             type: "LOGIN",
@@ -44,12 +48,11 @@ export const Menu = () => {
         <ul style={{ left }} className={isMobileView ? styles.mobileMenu : styles.menu}>
 
             {
-                menuItems?.map(({ id, name, path }: any) => {
+                menuItems?.map(({ id, name, path }:any) => {
                     return <li onClick={()=>handleMenuItemClick(id)}><Link id={id} href={path}>{name}</Link></li>
                 })
             }
         </ul>
     </>
     )
-}
 }
